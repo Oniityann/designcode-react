@@ -3,12 +3,12 @@ import styled from "styled-components"
 import { H1, MediumText } from "../styles/TextStyle"
 import { themes } from "../styles/ColorStyle"
 import PurchaseButton from "../buttons/PurchaseButton"
+import MockupAnimation from "../animations/MockupAnimation"
 
 function HeroSection() {
   return (
     <Wrapper>
       <ContentWrapper>
-        <img src="/images/logos/logo.svg" alt="logo" />
         <TextWrapper>
           <Title>
             Design
@@ -23,6 +23,7 @@ function HeroSection() {
             subtitle="120+ hours of video"
           />
         </TextWrapper>
+        <MockupAnimation />
       </ContentWrapper>
     </Wrapper>
   )
@@ -32,6 +33,7 @@ export default HeroSection
 
 const Wrapper = styled.div`
   background: linear-gradient(180deg, #4316db 0%, #9076e7 100%);
+  overflow: hidden;
 `
 const ContentWrapper = styled.div`
   max-width: 1234px;
@@ -40,6 +42,8 @@ const ContentWrapper = styled.div`
   margin: 0 auto;
   /// 第一个值是上下，第二个值是左右
   padding: 200px 30px;
+  display: grid;
+  grid-template-columns: 360px auto;
 `
 
 const TextWrapper = styled.div`
