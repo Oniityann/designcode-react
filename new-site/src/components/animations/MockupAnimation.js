@@ -15,6 +15,46 @@ export default function MockupAnimation() {
 
 const Wrapper = styled.div`
   position: relative;
+  /* 透视，值越小，角度越尖锐 */
+  perspective: 5000;
+  /* perspective-origin: top left; */
+
+  div {
+    transform: rotateY(-20deg) rotateX(20deg);
+    transform-origin: bottom left;
+  }
+
+  * {
+    transition: 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  :hover div {
+    transform: rotateY(0deg) rotateX(0deg);
+
+    &.mockup1 {
+      transition-delay: 0.1s;
+      transform: translate(-30px, -30px);
+    }
+    &.mockup2 {
+      transition-delay: 0.15s;
+      transform: translate(0px, -30px);
+    }
+    &.mockup3 {
+      transition-delay: 0.2s;
+    }
+    &.mockup4 {
+      transition-delay: 0.25s;
+      transform: translate(-120px, 30px);
+    }
+    &.mockup5 {
+      transition-delay: 0.3s;
+      transform: translate(-90px, 30px);
+    }
+
+    :hover {
+      filter: brightness(150%) saturate(120%);
+    }
+  }
 
   .mockup1 {
     position: absolute;
