@@ -25,3 +25,21 @@ export const menuData = [
     link: "/account",
   },
 ]
+
+export const tooltipData = [
+  {
+    title: "profile",
+    icon: "/images/icons/profile.svg",
+    link: "/profile",
+  },
+  {
+    title: "settings",
+    icon: "/images/icons/settings.svg",
+    link: "/settings",
+  },
+  {
+    title: "sign out",
+    icon: "/images/icons/signout.svg",
+    link: "/logout",
+  },
+]

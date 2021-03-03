@@ -3,6 +3,7 @@ import React from "react"
 import styled from "styled-components"
 import { menuData } from "../../data/menuData"
 import MenuButton from "../buttons/MenuButton"
+import MenuToolTip from "../tooltips/MenuToolTip"
 
 export default function Header() {
   return (
@@ -15,6 +16,7 @@ export default function Header() {
           <MenuButton item={item} key={index} />
         ))}
       </MenuWrapper>
+      <MenuToolTip />
     </Wrapper>
   )
 }
