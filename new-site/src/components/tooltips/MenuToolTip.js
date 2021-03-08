@@ -1,12 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { tooltipData } from "../../data/menuData"
 import MenuButton from "../buttons/MenuButton"
 
-export default function MenuToolTip() {
-  const [isOpen, setIsOpen] = useState(false)
+export default function MenuToolTip(props) {
+  const { isOpen } = props
   return (
-    <Wrapper isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+    <Wrapper isOpen={isOpen}>
       {tooltipData.map((item, index) => (
         <MenuButton item={item} key={index} />
       ))}
@@ -28,5 +28,8 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 150px;
   gap: 10px;
-  opacity: ${props => (props.isOpen ? 1 : 0.5)};
+  opacity: ${props => (props.isOpen ? 1 : 0)};
+
+  transition: 0.3s ease-in-out;
+  display: ${props => (props.isOpen ? "block" : "none")};
 `
