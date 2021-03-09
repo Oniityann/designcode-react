@@ -8,8 +8,8 @@ import MenuToolTip from "../tooltips/MenuToolTip"
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   return (
-    <Wrapper onClick={() => setIsOpen(!isOpen)}>
-      <Link to="/index">
+    <Wrapper>
+      <Link to="/">
         <img src="/images/logos/logo.svg" alt="logo" />
       </Link>
       <MenuWrapper count={menuData.length}>
