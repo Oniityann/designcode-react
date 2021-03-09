@@ -14,6 +14,7 @@ export default function Header() {
       </Link>
       <MenuWrapper count={menuData.length}>
         {menuData.map((item, index) =>
+          // === 同时对比了类型
           item.link === "/account" ? (
             <button onClick={() => setIsOpen(!isOpen)}>Account</button>
           ) : (
