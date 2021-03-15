@@ -16,7 +16,11 @@ export default function Header() {
         {menuData.map((item, index) =>
           // === 同时对比了类型
           item.link === "/account" ? (
-            <button onClick={() => setIsOpen(!isOpen)}>Account</button>
+            <MenuButton
+              item={item}
+              key={index}
+              onClick={() => setIsOpen(!isOpen)}
+            />
           ) : (
             <MenuButton item={item} key={index} />
           )
