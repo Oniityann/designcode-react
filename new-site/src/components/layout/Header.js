@@ -32,6 +32,12 @@ export default function Header() {
             <MenuButton item={item} key={index} />
           )
         )}
+        <HamburgerWrapper>
+          <MenuButton
+            item={{ title: "", icon: "/images/icons/hamburger.svg", link: "" }}
+            onClick={event => handleClick(event)}
+          />
+        </HamburgerWrapper>
       </MenuWrapper>
       <MenuToolTip isOpen={isOpen} />
     </Wrapper>
@@ -47,9 +53,31 @@ const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   padding: 0 30px;
+
+  @media (max-width: 768px) {
+    top: 30px;
+  }
+  @media (max-width: 450px) {
+    top: 20px;
+    padding: 0 20px;
+  }
 `
 const MenuWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(${props => props.count}, auto);
   gap: 30px;
+
+  @media (max-width: 768px) {
+    > a {
+      display: none;
+    }
+    grid-template-column: auto;
+  }
+`
+const HamburgerWrapper = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `
