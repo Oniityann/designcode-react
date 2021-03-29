@@ -1,5 +1,5 @@
 import { Link } from "gatsby"
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import { menuData } from "../../data/menuData"
 import MenuButton from "../buttons/MenuButton"
@@ -7,19 +7,38 @@ import MenuToolTip from "../tooltips/MenuToolTip"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const ref = useRef()
+  const tooltipRef = useRef()
 
   function handleClick(event) {
     setIsOpen(!isOpen)
     event.preventDefault()
-    console.log(event)
   }
+
+  function handleClickOutside(event) {
+    if (
+      ref.current &&
+      !ref.current.contains(event.target) &&
+      !tooltipRef.current.contains(event.target)
+    ) {
+      setIsOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside)
+
+    return () => {
+      document.addEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
 
   return (
     <Wrapper>
       <Link to="/">
         <img src="/images/logos/logo.svg" alt="Logo" />
       </Link>
-      <MenuWrapper count={menuData.length}>
+      <MenuWrapper count={menuData.length} ref={ref}>
         {menuData.map((item, index) =>
           // === 同时对比了类型
           item.link === "/account" ? (
@@ -34,12 +53,14 @@ export default function Header() {
         )}
         <HamburgerWrapper>
           <MenuButton
-            item={{ title: "", icon: "/images/icons/hamburger.svg", link: "" }}
+            item={{ title: "", icon: "/images/icons/hamburger.svg", link: "/" }}
             onClick={event => handleClick(event)}
           />
         </HamburgerWrapper>
       </MenuWrapper>
-      <MenuToolTip isOpen={isOpen} />
+      <div ref={tooltipRef}>
+        <MenuToolTip isOpen={isOpen} />
+      </div>
     </Wrapper>
   )
 }
